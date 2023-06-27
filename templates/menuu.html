@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda Menu</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        :root {
+            --body-bg: linear-gradient(135deg, #e07979 20%, #ce79d7 100%);
+        }
+
+        /* Appliquer un fond de couleur à la page */
+        body {
+            background: -webkit-linear-gradient(left, #e07979 20%, #ce79d7 100%);
+            background: linear-gradient(to right, #acb6ce 20%, #5f8e89 100%);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .pdf-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .food-search-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .food-search-container input[type="text"] {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            background-color: #8957B8;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #670CBE;
+        }
+
+        th:first-child,
+        td:first-child {
+            width: 3%;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 10%;
+        }
+
+        th:last-child,
+        td:last-child {
+            width: 10%;
+        }
+
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff0000;
+        }
+
+        .success {
+            text-align: center;
+            color: #008000;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            background-color: linear-gradient(135deg, #e07979 20%, #ce79d7 100%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .food-item {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .food-item button {
+            margin-right: 5px;
+            background:black
+        }
+
+        h1 {
+            display: block;
+            font-size: 1.5em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pdf-container">
+            <embed src="{{ url_for('static', filename='pdf/menu-panda.pdf') }}" width="700" height="730" type="application/pdf">
+        </div>
+
+        <style>
+
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
+        
+            .pdf-container {
+                flex: 1;
+                max-width: 50%;
+            }
+        
+            .food-search-container {
+                flex: 1;
+                max-width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        
+            .food-search-container h1 {
+                font-size: 1.5em;
+            }
+        
+            .food-search-container h2 {
+                font-size: 1.2em;
+            }
+        
+            .food-search-container #commanderButton {
+                margin-top: 10px;
+            }
+
+            .pdf-container {
+                flex: 1;
+                max-width: 50%;
+            }
+            
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+            
+            #commanderButton {
+                margin-top: 10px;
+            }
+
+
+            
+
+            #foodList {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            #foodList li {
+                margin-bottom: 10px;
+            }
+            
+            #foodList li:last-child {
+                margin-bottom: 0;
+            }
+
+
+
+
+            
+
+
+
+            .cadre {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid black;
+                padding: 10px;
+                background-color: #f2f2f2;
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                margin: 10px;
+                width: max-content;
+                height: fit-content;
+            }
+            
+
+
+            .cadre2 {
+                display: inline-flex;
+                flex-direction: column;
+                border: 1px solid black;
+                padding: 10px;
+                background-color: #f2f2f2;
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                margin: 10px;
+                width: max-content;
+                height: fit-content;
+            }
+
+            .cadre label {
+                font-weight: bold;
+            }
+            
+            .cadre input[type="text"] { 
+                padding: 5px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            
+            .cadre input[type="text"]:focus {
+                outline: none;
+                border-color: #8cacc6;
+                box-shadow: 0 0 5px rgba(140, 172, 198, 0.5);
+            }
+
+
+
+            .selected-foods-container {
+                margin-top: 20px;
+
+            }
+            
+
+            
+
+
+            #modalContainer {
+                background-color:rgba(0, 0, 0, 0.3);
+                position:absolute;
+                width:100%;
+                height:100%;
+                top:0px;
+                left:0px;
+                z-index:10000;
+                background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+            }
+            
+            #alertBox {
+                position:relative;
+                width:350px;
+                height: 240px;
+                min-height:100px;
+                margin-top:50px;
+                border:1px solid #666;
+                background-color:#fff;
+                background-repeat:no-repeat;
+                background-position:20px 30px;
+            }
+            
+            #modalContainer > #alertBox {
+                position:fixed;
+            }
+            
+            #alertBox h1 {
+                margin:0;
+                font:bold 0.9em verdana,arial;
+                background-color:#ca2525;
+                color:#FFF;
+                border-bottom:1px solid #000;
+                padding:2px 0 2px 5px;
+            }
+            
+            #alertBox p {
+                font:0.7em verdana,arial;
+                height:50px;
+                padding-left:5px;
+                margin-left:55px;
+                color : black;
+                font-weight: 900;
+            }
+            
+            #alertBox #closeBtn {
+                display:block;
+                position:relative;
+                margin:5px auto;
+                padding:7px;
+                border:0 none;
+                width:70px;
+                font:0.7em verdana,arial;
+                text-transform:uppercase;
+                text-align:center;
+                color:#FFF;
+                top :95px;
+                background-color:#ca2525;
+                border-radius: 3px;
+                text-decoration:none;
+            }
+            
+            /* unrelated styles */
+            
+            #mContainer {
+                position:relative;
+                width:600px;
+                margin:auto;
+                padding:5px;
+                border-top:2px solid #000;
+                border-bottom:2px solid #000;
+                font:0.7em verdana,arial;
+            }
+            
+            h1,h2 {
+                margin:0;
+                padding:4px;
+                font:bold 1.5em verdana;
+                border-bottom:1px solid #000;
+            }
+            
+            code {
+                font-size:1.2em;
+                color:#069;
+            }
+            
+            #credits {
+                position:relative;
+                margin:25px auto 0px auto;
+                width:350px; 
+                font:0.7em verdana;
+                border-top:1px solid #000;
+                border-bottom:1px solid #000;
+                height:90px;
+                padding-top:4px;
+            }
+            
+            #credits img {
+                float:left;
+                margin:5px 10px 5px 0px;
+                border:1px solid #000000;
+                width:80px;
+                height:79px;
+            }
+            
+            .important {
+                background-color:#F5FCC8;
+                padding:2px;
+            }
+            
+            code span {
+                color:green;
+            }
+      
+      
+        
+        </style>
+        
+        <div class="cadre">
+            <div class="food-search-container">
+                <h1 style="font-size: 1.3em;">Informations personnelles</h1>
+                <div class="form_wrap">
+                    <div class="form_item">
+                        <label>Nom</label>
+                        <input type="text" name="name">
+                    </div>
+                    <div class="form_item">
+                        <label>Prenom</label>
+                        <input type="text" name="prenom">
+                    </div>
+                </div>
+        
+                <div class="form_wrap">
+                    <div class="form_item">
+                        <label>Num</label>
+                        <input id="phone" type="text" name="num" onchange="testPhoneNumber()">
+                    </div>
+                    <div class="form_item">
+                        <label>Lieu</label>
+                        <input type="text" name="lieu">
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+
+
+        <div class="cadre">
+            <div class="food-search-container">
+                <h1 style="font-size: 2em;">Recherche de nourriture</h1>
+                <input type="text" id="searchInput" placeholder="Rechercher un aliment..." style="width: 90%; padding: 10px;">
+                <ul  class="cadre2" id="foodList" style="max-height: 220px; overflow-y: auto;"></ul>
+            </div>
+            <div class="food-search-container">
+                <h2>Aliments sélectionnés:</h2>
+                <ul class="cadre2" id="selectedFoods"></ul>
+                <p id="totalPrice">Prix ​​total: 0.00 DH</p>
+                <button id="commanderButton">Commander</button>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+        <script>
+            var selectedFoods = []; // Array to store selected foods
+    
+            // Function to handle adding food to the selected foods list
+            // Function to handle adding food to the selected foods list
+
+            function sendCommande() {
+                // Get the values from the input fields
+                var nom = document.querySelector("input[name='name']").value;
+                var prenom = document.querySelector("input[name='prenom']").value;
+                var num = document.querySelector("input[name='num']").value;
+                var lieu = document.querySelector("input[name='lieu']").value;
+        
+                // Create an array to store the selected foods
+                var foodsToSend = [];
+        
+                // Iterate through the selected foods array and create the data to send
+                selectedFoods.forEach(function(food) {
+                    foodsToSend.push({
+                        name: food.name,
+                        price: food.price,
+                        quantity: food.quantity
+                    });
+                });
+        
+                // Create the data object to send in the AJAX request
+                var data = {
+                    nom: nom,
+                    prenom: prenom,
+                    num: num,
+                    lieu: lieu,
+                    foods: foodsToSend,
+                    totalPrice: document.getElementById("totalPrice").textContent
+                };
+        
+                // Make the AJAX request
+                $.ajax({
+                    url: "/commande",
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function(response) {
+                        // Display the success message and livreur_num in an alert
+                        alert(response.message + "\nNumero de livreur: " + response.livreur_num);
+                    },
+                    error: function(error) {
+                        // Handle the error if needed
+                        console.error("Error sending commande:", error);
+                    }
+                });
+            }
+
+// Rest of the code remains the same...
+
+
+document.getElementById("commanderButton").addEventListener("click", sendCommande);
+
+
+
+
+function addFoodToList(name, price) {
+    var selectedFoodsList = document.getElementById("selectedFoods");
+
+    // Check if the food item already exists in the selected foods array
+    var existingFood = selectedFoods.find(function(food) {
+        return food.name === name && food.price === price;
+    });
+
+    if (existingFood) {
+        // If the food item exists, increment the quantity
+        existingFood.quantity++;
+    } else {
+        // If the food item doesn't exist, add it to the selected foods array
+        selectedFoods.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    // Update the selected foods list
+    updateSelectedFoodsList();
+}
+
+// Function to update the selected foods list
+function updateSelectedFoodsList() {
+    var selectedFoodsList = document.getElementById("selectedFoods");
+    selectedFoodsList.innerHTML = "";
+
+    // Create a dictionary to keep track of the selected foods and their quantities
+    var selectedFoodsDict = {};
+
+    // Iterate through the selected foods array and update the quantities in the dictionary
+    selectedFoods.forEach(function(food) {
+        var key = food.name + " - " + food.price + " DH";
+        if (selectedFoodsDict.hasOwnProperty(key)) {
+            selectedFoodsDict[key].quantity += food.quantity;
+        } else {
+            selectedFoodsDict[key] = {
+                quantity: food.quantity,
+                price: food.price
+            };
+        }
+    });
+
+    // Iterate through the selected foods dictionary and display the items with quantities
+    for (var key in selectedFoodsDict) {
+        if (selectedFoodsDict.hasOwnProperty(key)) {
+            var food = selectedFoodsDict[key];
+            var li = document.createElement("li");
+            var totalPrice = (food.price * food.quantity).toFixed(2);
+            li.textContent = key + " - Quantité: " + food.quantity + " - " + totalPrice + " DH";
+            selectedFoodsList.appendChild(li);
+        }
+    } 
+
+    // Calculate and display the total price
+    var totalPrice = selectedFoods.reduce(function(acc, food) {
+        return acc + parseFloat(food.price) * food.quantity;
+    }, 0);
+
+    document.getElementById("totalPrice").textContent =
+        "Prix ​​total: " + totalPrice.toFixed(2) + " DH";
+}
+
+// Rest of the code remains the same...
+
+            // Function to search for food items
+           // Function to search for food items
+function searchFood() {
+    // Get the input value
+    var input = document.getElementById("searchInput").value.toLowerCase();
+    var foodList = document.getElementById("foodList");
+
+    // Clear the food list
+    foodList.innerHTML = "";
+
+    // Retrieve the food data from the JSON file
+    $.getJSON("{{ url_for('static', filename='food.json') }}", function(data) {
+        var filteredItems = data.foodItems.filter(function(item) {
+            var name = item.name.toLowerCase();
+            return name.startsWith(input);
+        });
+
+        // Create a dictionary to keep track of the selected foods and their quantities
+        var selectedFoodsDict = {};
+
+        // Iterate through the selected foods array and update the quantities in the dictionary
+        selectedFoods.forEach(function(food) {
+            var key = food.name + " - " + food.price + " DH";
+            if (selectedFoodsDict.hasOwnProperty(key)) {
+                selectedFoodsDict[key]++;
+            } else {
+                selectedFoodsDict[key] = 1;
+            }
+        });
+
+        // Iterate through the filtered food items
+        filteredItems.forEach(function(item) {
+            var name = item.name.toLowerCase();
+            var price = item.price.toFixed(2);
+            var key = name + " - $" + price;
+
+            // Check if the item is already selected and get its quantity
+            var quantity = selectedFoodsDict.hasOwnProperty(key) ? selectedFoodsDict[key] : 0;
+
+            // Create a new list item and append it to the food list
+            var li = document.createElement("li");
+            var button = document.createElement("button");
+            button.textContent = "+";
+            button.className = "button";
+            button.addEventListener("click", function() {
+                addFoodToList(name, price);
+            });
+
+            li.textContent = name + " - " + price + " DH " ;
+            li.className = "food-item";
+            li.insertBefore(button, li.firstChild);
+            foodList.appendChild(li);
+        });
+    });
+}
+
+    
+            // Attach event listener to the input field
+            document.getElementById("searchInput").addEventListener("input", searchFood);
+        </script>
+    </div>
+    
+</body>
+</html>

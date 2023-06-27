@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sliding Modal Box Style</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <!--Jquery CDN link -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- JavaScript file-->
+    <script src="function.js"></script>
+    <style>
+      html {
+        background-image: url("static/resss.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        color : white;
+      }
+
+      .center,.start-btn{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      /* homepage popup button */
+      .start-btn a{
+        font-size: 22px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+        background: white;
+        color: #02242b;
+        padding: 15px 18px;
+        letter-spacing: 1px;
+      }
+      /* popup box */
+      .modal-box{
+        top: 40%;
+        opacity: 0;
+        width: 480px;
+        padding: 18px 10px;
+        border-radius: 5px;
+        visibility: hidden;
+        background: rgb(0 0 0 / 90%);
+        height: auto;
+        box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+      }
+      .start-btn.show-modal{
+        opacity: 0;
+        visibility: hidden;
+      }
+      .modal-box.show-modal{
+        top: 50%;
+        opacity: 1;
+        visibility: visible;
+        transition: .4s;
+      }
+      /* cancel button */
+      .modal-box .fa-times{
+        position: absolute;
+        color: black;
+      }
+      .fa-times:hover{
+        font-size: 22px;
+      }
+      /* design the form */
+      .form_container{
+       background : rgba(0, 0, 0, 0.79);
+        padding: 30px;
+        margin-top: 20px;
+        border-radius: 3px;
+      }
+      .form_container .form_item{
+        margin-bottom: 25px;
+      }
+      .form_container .form_wrap.form_grp{
+        display: flex;
+      }
+      .form_container .form_wrap.form_grp .form_item{
+        width: 50%;
+      }
+      .form_container .form_wrap.form_grp .form_item:first-child{
+        margin-right: 4%;
+      }
+      .form_container .form_item label{
+        display: block;
+        margin-bottom: 5px;
+      }
+      /* input box and select box */
+      .form_container .form_item input,
+      .form_container .form_item select{
+        width: 100%;
+        border: 1px solid #dadce0;
+        border-radius: 3px;
+        padding: 5px;
+        font-size: 16px;
+        background: #ffffffac ;
+      }
+      /* submit button */
+      .form_container .btn input[type="submit"]{
+        background: #ca2525;
+        cursor: pointer;
+        color: #ffffff;
+          border: 1px solid #ca2525;
+          padding: 10px;
+          width: 100%;
+          border-radius: 3px;
+        }
+
+
+        .btn-primary {
+          color: #fff;
+          background-color: #ff214f;
+          border-color: #ff214f;
+        }
+
+
+        .axx {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #ca2525;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 4px;
+          font-weight: bold;
+          position: fixed;
+          bottom: 100px;
+          right: 680px;
+        }
+
+
+
+
+
+
+
+
+
+
+        #modalContainer {
+          background-color:rgba(0, 0, 0, 0.3);
+          position:absolute;
+          width:100%;
+          height:100%;
+          top:0px;
+          left:0px;
+          z-index:10000;
+          background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+      }
+      
+      #alertBox {
+          position:relative;
+          width:350px;
+          height: 240px;
+          min-height:100px;
+          margin-top:50px;
+          border:1px solid #666;
+          background-color:#fff;
+          background-repeat:no-repeat;
+          background-position:20px 30px;
+      }
+      
+      #modalContainer > #alertBox {
+          position:fixed;
+      }
+      
+      #alertBox h1 {
+          margin:0;
+          font:bold 0.9em verdana,arial;
+          background-color:#ca2525;
+          color:#FFF;
+          border-bottom:1px solid #000;
+          padding:2px 0 2px 5px;
+      }
+      
+      #alertBox p {
+          font:0.7em verdana,arial;
+          height:50px;
+          padding-left:5px;
+          margin-left:55px;
+          color : black;
+          font-weight: 900;
+      }
+      
+      #alertBox #closeBtn {
+          display:block;
+          position:relative;
+          margin:5px auto;
+          padding:7px;
+          border:0 none;
+          width:70px;
+          font:0.7em verdana,arial;
+          text-transform:uppercase;
+          text-align:center;
+          color:#FFF;
+          top :95px;
+          background-color:#ca2525;
+          border-radius: 3px;
+          text-decoration:none;
+      }
+      
+      /* unrelated styles */
+      
+      #mContainer {
+          position:relative;
+          width:600px;
+          margin:auto;
+          padding:5px;
+          border-top:2px solid #000;
+          border-bottom:2px solid #000;
+          font:0.7em verdana,arial;
+      }
+      
+      h1,h2 {
+          margin:0;
+          padding:4px;
+          font:bold 1.5em verdana;
+          border-bottom:1px solid #000;
+      }
+      
+      code {
+          font-size:1.2em;
+          color:#069;
+      }
+      
+      #credits {
+          position:relative;
+          margin:25px auto 0px auto;
+          width:350px; 
+          font:0.7em verdana;
+          border-top:1px solid #000;
+          border-bottom:1px solid #000;
+          height:90px;
+          padding-top:4px;
+      }
+      
+      #credits img {
+          float:left;
+          margin:5px 10px 5px 0px;
+          border:1px solid #000000;
+          width:80px;
+          height:79px;
+      }
+      
+      .important {
+          background-color:#F5FCC8;
+          padding:2px;
+      }
+      
+      code span {
+          color:green;
+      }
+
+
+
+      </style>
+      <script>
+        $(document).ready(function() {
+          // show the modal on page load
+          $('.modal-box').addClass("show-modal");
+          $('.start-btn').removeClass("show-modal");
+      
+          // active cancel button
+          $('.fa-times').click(function() {
+            $('.modal-box').toggleClass("show-modal");
+            $('.start-btn').toggleClass("show-modal");
+          });
+        });
+
+
+
+
+
+
+
+        var ALERT_TITLE = "Alerte";
+var ALERT_BUTTON_TEXT = "Ok";
+
+if(document.getElementById) {
+    window.alert = function(txt) {
+        createCustomAlert(txt);
+    }
+}
+
+function createCustomAlert(txt) {
+    d = document;
+
+    if(d.getElementById("modalContainer")) return;
+
+    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    mObj.id = "modalContainer";
+    mObj.style.height = d.documentElement.scrollHeight + "px";
+
+    alertObj = mObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+    h1 = alertObj.appendChild(d.createElement("h1"));
+    h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+    msg = alertObj.appendChild(d.createElement("p"));
+    //msg.appendChild(d.createTextNode(txt));
+    msg.innerHTML = txt;
+
+    btn = alertObj.appendChild(d.createElement("a"));
+    btn.id = "closeBtn";
+    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+    btn.href = "#";
+    btn.focus();
+    btn.onclick = function() { removeCustomAlert();return false; }
+
+    alertObj.style.display = "block";
+
+}
+
+function removeCustomAlert() {
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+}
+      </script>
+      
+     
+      <a href="/" class="axx">Revenir à l'accueil</a>
+
+      
+  <!-- Registration form -->
+  <div class="center modal-box show-modal">
+
+    <div class="fas fa-times"></div>
+    <center>
+    <a>Saisir vos information</a>
+    </center>
+    <div class="form_container">
+      
+      <form id="myForm" method="POST" action="{{ url_for('forget') }}">
+        <div class="form_wrap form_grp">
+          <div class="form_item">
+            <label>Nom</label>
+            <input type="text" name="name">
+          </div>
+          <div class="form_item">
+            <label>Prenom</label>
+            <input type="text" name="prenom">
+          </div>
+        </div>
+        <div class="form_wrap form_grp">
+          <div class="form_item">
+            <label>Numéro de téléphone</label>
+            <input id="number" type="text" name="number" onchange="testPhoneNumber()">
+          </div>
+        </div>
+        <div class="form_item">
+          <label>Selectionner le nom de restaurant</label>
+            <select id="restaurant" name="restaurant">
+              <option>DHOW</option>
+              <option>IL288</option>
+              <option>PANDA</option>
+            </select>
+        </div>
+        <div class="btn">
+          <input type="submit" value="Enregistrer" >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Function to handle the button click event
+  function handleClick(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    var form = document.getElementById("myForm");
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.ress); // Display the response message in an alert
+         // Redirect to index.html
+      })
+      .catch(error => {
+        console.error("An error occurred:", error);
+        alert("An error occurred while processing your request.");
+      });
+  }
+
+  // Add a click event listener to the button
+  var button = document.querySelector("input[type='submit']");
+  button.addEventListener("click", handleClick);
+
+
+
+
+  
+  /*
+  function testPhoneNumber() {
+    var phoneNumberInput = document.getElementById("phone");
+    if (phoneNumberInput && phoneNumberInput.value && phoneNumberInput.value.length === 10 ) {
+      if(phoneNumberInput.value.startsWith("06") || phoneNumberInput.value.startsWith("07") || phoneNumberInput.value.startsWith("05")) {
+        console.log("Phone number is valid.");
+      } else {
+        alert("Veuillez insérer une Phone valide.");
+        phoneNumberInput.value = "";
+      }
+    } else {
+      alert("Veuillez insérer une Phone valide.");
+      phoneNumberInput.value = "";
+    }
+  } */
+  
+
+  function testDate() {
+    var inputDate = new Date(document.getElementById('date').value);
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    if (inputDate < currentDate) {
+      alert('Veuillez insérer une date valide.');
+      document.getElementById('date').value = '';
+    }
+  }
+</script>
+        
+</html>

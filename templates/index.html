@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/style2.css">
+  <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/vendors/animate/animate.css">
+	<link rel="stylesheet" href="assets/css/foodhut.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+
+<body>
+  <nav class="navbar fixed-bottom-left  navbar-dark bg-dark">
+    <a id="chat-header" class="btn btn-primary ml-xl-4 red-button ">CHAT <i class='far fa-comment-dots'></i></a>
+  </nav>
+
+   <!-- Navbar -->
+   <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#home">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about">A propos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#gallary">Menu</a>
+            </li>
+            
+        </ul>
+ 
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#book-table">Opérations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#blog">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+            </li>
+           
+        </ul>
+    </div>
+</nav>
+<!-- header -->
+<header id="home" class="header">
+    <div class="overlay text-white text-center">
+        <h1 class="display-2 font-weight-bold my-3">Tasty</h1>
+        <h2 class="display-4 mb-5">Nous vous simplifions le choix</h2>
+    </div>
+</header>
+
+<!--  About Section  -->
+<div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
+    <div class="row">
+        <div class="col-lg-6 has-img-bg"></div>
+        <div class="col-lg-6">
+            <div class="row justify-content-center">
+                <div class="col-sm-8 py-5 my-5">
+                    <h2 class="mb-4">À propos de nous</h2>
+                    <p>Bienvenue sur notre plateforme de restauration de premier choix, où l'excellence culinaire rencontre la commodité. Nous sommes fiers de vous présenter Dhow, Panda et Il288, trois restaurants exceptionnels qui ont uni leurs forces pour vous offrir une expérience gastronomique inégalée.
+                    <br>Sur notre plateforme de restauration, nous croyons que la bonne cuisine est non seulement un plaisir, mais aussi un moyen de rassembler les gens. Nous comprenons l'importance de savourer de délicieux repas dans une atmosphère confortable et accueillante, que ce soit pour une occasion spéciale, une réunion décontractée ou une bouchée rapide en déplacement.</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  gallary Section  -->
+<div  id="gallary" class="text-center bg-dark text-light has-height-md middle-items wow fadeIn">
+  <br><br><br>
+  <h2 class="section-title">Notre Menu</h2><br>
+<br>
+  <div class="gallery-container">
+    <div id="slide">
+      <div class="item" style="background-image: url(static/maroc.jpg);">
+        <div class="content">
+          <div class="name">LE DHOW</div>
+          <div class="des">Déjeuner romantique sur un bateau</div>
+          <button> <a href='http://localhost/menu-dhow' target="_blank">Menu</a></button>
+        </div>
+      </div>
+      <div class="item" style="background-image: url(static/italy.jpg);">
+        <div class="content">
+          <div class="name">IL288</div>
+          <div class="des">Paysage et restaurant marocain</div>
+          <button> <a href='http://localhost/menu-il288' target="_blank">Menu</a></button>
+        </div>
+      </div>
+      <div class="item" style="background-image: url(static/assia.jpg);">
+        <div class="content">
+          <div class="name">PANDA</div>
+          <div class="des">Profitez de la cuisine asiatique</div>
+          <button>  <a href='http://localhost/menu-panda' target="_blank">Menu</a></button>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+      <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+    </div>
+  </div>
+</div>
+  
+  <script>
+    document.getElementById('next').onclick = function () {
+      let lists = document.querySelectorAll('.item');
+      document.getElementById('slide').appendChild(lists[0]);
+    };
+    
+    document.getElementById('prev').onclick = function () {
+      let lists = document.querySelectorAll('.item');
+      document.getElementById('slide').prepend(lists[lists.length - 1]);
+    };
+    
+    // Timer function to automatically move to the next image after 4 seconds
+    function autoNextImage() {
+      setInterval(function () {
+        let lists = document.querySelectorAll('.item');
+        document.getElementById('slide').appendChild(lists[0]);
+      }, 6000);
+    }
+    
+    autoNextImage();
+    
+  </script>
+  
+ <br><br><br><br><br>
+</div>
+
+
+
+
+<!-- book a table Section  -->
+
+<div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
+  <div class="">
+      <h2 class="section-title mb-5">Operations</h2>
+      <a  class="btn btn-lg btn-primary" id="ress-btn">Reserver Maintenant</a>
+      <a href="/modifr" class="btn btn-lg btn-primary" id="rounded-btn">Modifer une Reservation</a>
+      <a  href="/anul" class="btn btn-lg btn-primary" id="ann-btn">Annuler une Reservation</a>
+      <a  href="/forg" class="btn btn-lg btn-primary" id="ann-btn">Consulter une réservation</a>
+      <a  href="/menu_panda" class="btn btn-lg btn-primary" id="ann-btn">Commander Maintenant</a>
+  </div>
+</div>
+
+<script>
+$('#ress-btn').click(function() {
+  $('.modal-box').addClass("show-modal");
+  $('.start-btn').removeClass("show-modal");
+  $('.modal-box').css('display', 'block');
+});
+</script>
+
+
+
+<!-- BLOG Section  -->
+<div id="blog" class="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
+    <h2 class="section-title py-5">Nos Restaurants</h2>
+    <div class="row justify-content-center">
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="foods" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card bg-transparent border my-3 my-md-0">
+                      <img src="{{ url_for('static', filename='dhowo.jpg') }}" alt="Ma photo">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4"></h1>
+                            <h4 class="pt20 pb20">Le dhow</h4>
+                            <p class="text-white">Le restaurant Dhow à Rabat est un établissement situé sur la corniche de la ville, offrant une vue panoramique sur l'océan Atlantique. Il propose une cuisine marocaine raffinée avec un mélange de plats traditionnels tels que le tajine, le couscous et les brochettes. Le restaurant est aménagé dans un style marocain traditionnel et propose une atmosphère chaleureuse et conviviale. Des spectacles de musique et de danse traditionnelles sont également proposés pour divertir les convives. Le personnel est réputé pour son accueil chaleureux et son service attentionné. Il est recommandé de réserver à l'avance, surtout pendant les périodes de pointe. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-transparent border my-3 my-md-0">
+                      <img src="{{ url_for('static', filename='pann.jpg') }}" alt="Ma photo">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4"></h1>
+                            <h4 class="pt20 pb20">Panda</h4>
+                            <p class="text-white">Le Panda Restaurant à Rabat est un établissement spécialisé dans la cuisine asiatique. Il propose une variété de plats provenant de différentes régions d'Asie, tels que la Chine, le Japon, la Thaïlande, la Corée, entre autres. Vous pouvez vous attendre à trouver des plats comme les nouilles sautées, les raviolis vapeur, les currys, les sushis, les sashimis, les tempuras et les plats à base de riz. La cuisine asiatique se caractérise par ses saveurs uniques, ses épices et ses techniques de cuisson spécifiques à chaque région. Pour obtenir des informations plus détaillées sur le Panda Restaurant, je vous suggère de consulter leur site web, leurs avis clients en ligne ou de les contacter directement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-transparent border my-3 my-md-0">
+                      <img src="{{ url_for('static', filename='illl.jpg') }}" alt="Ma photo">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4"></h1>
+                            <h4 class="pt20 pb20">IL288</h4>
+                            <p class="text-white">Le restaurant IL288 à Rabat est réputé pour sa cuisine marocaine et italienne. L'atmosphère chaleureuse et conviviale invite les clients à découvrir une fusion de saveurs traditionnelles marocaines et de délices italiens. Le menu propose des plats emblématiques marocains tels que le tajine, le couscous et la pastilla, ainsi que des spécialités italiennes comme les pizzas, les pâtes fraîches et les risottos. Les ingrédients frais et les épices utilisés garantissent une explosion de saveurs authentiques. L'équipe attentionnée et passionnée assure un service professionnel, offrant des conseils avisés sur les plats et les vins. Que vous cherchiez un dîner romantique, une sortie en famille ou un déjeuner d'affaires, le restaurant IL288 est l'endroit idéal pour savourer des plats marocains et italiens de qualité à Rabat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="juices" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="row">
+                <div class="col-md-4 my-3 my-md-0">
+                    <div class="card bg-transparent border">
+                        <img src="assets/imgs/blog-4.jpg" alt="template by DevCRID http://www.devcrud.com/" class="rounded-0 card-img-top mg-responsive">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">$15</a></h1>
+                            <h4 class="pt20 pb20">Consectetur Adipisicing Elit</h4>
+                            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa provident illum officiis fugit laudantium voluptatem sit iste delectus qui ex. </p>
+                            <div class="col-md-6 px-0">
+                                <div id="map" style="width: 50%; height: 50%; min-height: 200px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 my-3 my-md-0">
+                    <div class="card bg-transparent border">
+                        <img src="assets/imgs/blog-5.jpg" alt="template by DevCRID http://www.devcrud.com/" class="rounded-0 card-img-top mg-responsive">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">$29</a></h1>
+                            <h4 class="pt20 pb20">Ullam Laboriosam</h4>
+                            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa provident illum officiis fugit laudantium voluptatem sit iste delectus qui ex. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 my-3 my-md-0">
+                    <div class="card bg-transparent border">
+                        <img src="assets/imgs/blog-6.jpg" alt="template by DevCRID http://www.devcrud.com/" class="rounded-0 card-img-top mg-responsive">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">$3</a></h1>
+                            <h4 class="pt20 pb20">Fugit Ipsam</h4>
+                            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa provident illum officiis fugit laudantium voluptatem sit iste delectus qui ex. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REVIEWS Section  -->
+
+
+<!-- CONTACT Section  -->
+
+  </style>
+</style>
+<div id="contact" class="container-fluid bak text-center text-light sod middle-items">
+  <h3><i class="fas fa-map-marker-alt"></i> localisation</h3>
+  <div class="text-muted">
+    <a class="oooo" href="https://www.google.com/maps/place/Le+Dhow/@34.028934,-6.8323541,15z/data=!4m2!3m1!1s0x0:0x6b7061fd784387a4?sa=X&ved=2ahUKEwjo8OG2mJv_AhUsuaQKHa2EDKMQ_BJ6BAhWEAg" target="_blank" >DHOW</a>
+    <a class="oooo" href="https://www.google.com/maps/place/PANDA/@33.956289,-6.8679323,15z/data=!4m6!3m5!1s0xda76dc1cec2ed11:0x875c73ab4abc5dd2!8m2!3d33.956289!4d-6.8679323!16s%2Fg%2F11p6t9zmb5?entry=ttu" target="_blank" >PANDA</a>
+    <a class="oooo" href="https://www.google.com/maps/place/IL+288+Rabat+-+Mediterranean+Food+%26+Garden/@34.0158497,-6.8351102,15z/data=!4m6!3m5!1s0xda76d907b825187:0xf55643b0f3fa84ea!8m2!3d34.0158497!4d-6.8351102!16s%2Fg%2F11l0jtpp3_?entry=ttu" target="_blank" >IL288</a>
+  </div>
+</div>
+
+
+  
+<!-- page footer  -->
+<div class="container-fluid bg-dark text-light has-height-md middle-items border-top text-center wow fadeIn">
+    <div class="row">
+      
+        <div class="col-sm-4">
+            <h3>ENVOYER UN EMAIL</h3>
+            <P class="text-muted" >testy@gmail.com</P>
+        </div>
+        <div class="col-sm-4">
+            <h3>APPELEZ-NOUS</h3>
+            <P class="text-muted" >0577117711</P>
+        </div>  
+        <div class="col-sm-4">
+            <h3>TROUVE NOUS RESTAURANTS</h3>
+            <P class="text-muted">RABAT</P>
+        </div>
+    </div>
+</div>
+
+<div class="bg-dark text-light text-center border-top wow fadeIn">
+  <p class="mb-0 py-3 text-muted small">
+    &copy; Copyright <script>document.write(new Date().getFullYear())</script>
+    Made with Love By <a>khalil laafou</a>
+  </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="chatbox">
+<div id="chat-conversation">
+  <section class="msger">
+    <header class="msger-header">
+      <div>
+        <span style="font-size: 10px;">&#x1F7E2;</span>
+        <span style="font-size: 15px;">Chat</span>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      <div class="msg left-msg">
+        <div class="msg-img" style="background-image: url(https://cdnb.artstation.com/p/assets/images/images/044/080/983/large/ai-avatars-68db480222d0f966.jpg?1639038308)"></div>
+
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">Testy</div>
+            <div class="msg-info-time">12:45</div>
+          </div>
+
+          <div class="msg-text">
+            Bonjour, bienvenu a notre platform de restaurantion.😄
+          </div> 
+          <div class="msg-text">
+            Nous avons trois restaurants DHOW-PANDA-IL288🍳🍱
+          </div> 
+          <div class="msg-text">
+            Vous pouvez commander le Menu 🍱 ,la localisation 📍,des photos 🌇 et tu peux reserver 🏥 et  "modifier/annuler" et consulter la reservation 😄
+          </div> 
+
+        </div>
+      </div>
+
+    </main>
+
+    <form class="msger-inputarea">
+      <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+    
+
+  </section>
+  <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+  <script>
+
+    const msgerForm = get(".msger-inputarea");
+    const msgerInput = get(".msger-input");
+    const msgerChat = get(".msger-chat");
+
+
+
+    const BOT_IMG = "https://cdnb.artstation.com/p/assets/images/images/044/080/983/large/ai-avatars-68db480222d0f966.jpg?1639038308";
+    const PERSON_IMG = "https://cdna.artstation.com/p/assets/images/images/044/081/414/large/ai-avatars-6b57d5716357b9fe.jpg?1639039551";
+    const BOT_NAME = "    Testy";
+    const PERSON_NAME = "You";
+
+    msgerForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const msgText = msgerInput.value;
+      if (!msgText) return;
+
+      appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+      msgerInput.value = "";
+      botResponse(msgText);
+    });
+
+
+
+
+
+
+    
+  
+  var ALERT_TITLE = "Alerte";
+  var ALERT_BUTTON_TEXT = "Ok";
+  
+  if(document.getElementById) {
+      window.alert = function(txt) {
+          createCustomAlert(txt);
+      }
+  }
+  
+  function createCustomAlert(txt) {
+      d = document;
+  
+      if(d.getElementById("modalContainer")) return;
+  
+      mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+      mObj.id = "modalContainer";
+      mObj.style.height = d.documentElement.scrollHeight + "px";
+  
+      alertObj = mObj.appendChild(d.createElement("div"));
+      alertObj.id = "alertBox";
+      if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+      alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+      alertObj.style.visiblity="visible";
+  
+      h1 = alertObj.appendChild(d.createElement("h1"));
+      h1.appendChild(d.createTextNode(ALERT_TITLE));
+  
+      msg = alertObj.appendChild(d.createElement("p"));
+      //msg.appendChild(d.createTextNode(txt));
+      msg.innerHTML = txt;
+  
+      btn = alertObj.appendChild(d.createElement("a"));
+      btn.id = "closeBtn";
+      btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+      btn.href = "#";
+      btn.focus();
+      btn.onclick = function() { removeCustomAlert();return false; }
+  
+      alertObj.style.display = "block";
+  
+  }
+  
+  function removeCustomAlert() {
+      document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+  }
+
+    
+
+
+
+
+    function appendMessage(name, img, side, text) {
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+
+    <div class="msg-text">${text}</div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+    function dhow(name, img, side, text) {
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+    Les restaurants que nous faisons se spécialisent dans différents types d'aliments <br>
+    <div class="msg-text">---> Le dhow🍛<a href='http://localhost/menu-dhow' target="_blank">Menu</a> </div>
+    <div class="msg-text">-----> Panda🍣 <a href='http://localhost/menu-panda' target="_blank">Menu</a> </div>
+    <div class="msg-text">-------> IL288🍲 <a href='http://localhost/menu-il288' target="_blank">Menu</a> </div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+    function localisation(name, img, side, text) {
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+  ----> DHOW📍:
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.128610027912!2d-6.8323541!3d34.028934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76b8b1c6d0daf%3A0x6b7061fd784387a4!2sLe%20Dhow!5e0!3m2!1sen!2s!4v1651761935182!5m2!1sen!2s" width="200" height="100" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  ----> PANDA📍:
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3327.625004080138!2d-6.8679323!3d33.956289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x875c73ab4abc5dd2!2sPANDA!5e0!3m2!1sen!2sma!4v1620461272925!5m2!1sen!2sma" width="200" height="100" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  ----> IL288📍:
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3333.1319906733317!2d-6.837298084801567!3d34.015850880600184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf55643b0f3fa84ea!2sIL%20288%20Rabat%20-%20Mediterranean%20Food%20%26%20Garden!5e0!3m2!1sen!2sus!4v1651338626565!5m2!1sen!2sus" width="200" height="100" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+
+
+    function photo(name, img, side, text) {
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+    Dhow photos :
+    <img src="https://www.essaouira-interiors.com/wp-content/uploads/2020/03/2le_dhow_02.jpg" alt="Le dhow" width="150" height="50">
+    <img src="https://i.pinimg.com/originals/27/45/b3/2745b3d6eefbda5a198e8fd822a73be5.jpg" alt="Le dhow" width="150" height="50">
+    <br>panda photos :
+    <img src="https://media-cdn.tripadvisor.com/media/photo-w/28/2a/0d/19/best-sushi-wok-restaurant.jpg" alt="Le dhow" width="150" height="50">
+    <img src="https://media-cdn.tripadvisor.com/media/photo-w/28/2a/11/3b/best-asian-restaurant.jpg" alt="Le dhow" width="150" height="50">
+    <br>IL288 photos :
+    <img src="https://www.visitrabat.com/wp-content/uploads/2020/11/il288_1-min.jpg" alt="Le dhow" width="150" height="50">
+    <img src="https://www.plurielle.ma/wp-content/uploads/2021/01/Capture-1.png" alt="Le dhow" width="150" height="50">
+
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+
+    function ano(name, img, side, text) {
+      const msgHTML = `
+      <div class="msg ${side}-msg">
+        <div class="msg-img" style="background-image: url(${img})"></div>
+      
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">${name}</div>
+            <div class="msg-info-time">${formatDate(new Date())}</div>
+          </div>
+          <a href="/anul" target="_blank" >annuler la Reservation</a>
+        </div>
+      </div>
+      `;
+      
+            msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+            msgerChat.scrollTop += 500;
+    }
+
+
+    function forget(name, img, side, text) {
+      const msgHTML = `
+      <div class="msg ${side}-msg">
+        <div class="msg-img" style="background-image: url(${img})"></div>
+      
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">${name}</div>
+            <div class="msg-info-time">${formatDate(new Date())}</div>
+          </div>
+          <a href="/forg" target="_blank" >consulter votre Reservation</a>
+        </div>
+      </div>
+      `;
+      
+            msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+            msgerChat.scrollTop += 500;
+    }
+    
+    
+
+
+    
+    function admindhow(name, img, side, text) {
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+   
+    <div class="msg-text"> Vous pouvez vérifier les réservations de dhow ici <a href='http://localhost/dhow' target="_blank">dhow_admin</a> </div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+
+
+    function adminpanda(name, img, side, text) {
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+   
+    <div class="msg-text"> Vous pouvez vérifier les réservations de panda ici <a href='http://localhost/panda' target="_blank">panda_admin</a> </div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+    
+
+
+
+    function adminil288(name, img, side, text) {
+      //   Simple solution for small apps
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+   
+    <div class="msg-text"> Vous pouvez vérifier les réservations de il288 ici <a href='http://localhost/il288' target="_blank">il288_admin</a> </div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+
+
+    function modifee(name, img, side, text) {
+      //   Simple solution for small apps
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+    <a href="/modifr" target="_blank" >Modifer une Reservation</a>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+    
+
+
+    function menuu(name, img, side, text) {
+      //   Simple solution for small apps
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+    <a href="/menu">modifer</a>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+    
+
+    function botResponse(rawText) {
+
+      $.get("/get", { msg: rawText }).done(function (data) {
+        console.log(rawText);
+        console.log(data);
+        const msgText = data;
+        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+        let heading = document.querySelector('.modal-box');
+        if (data == "Bien sur"){
+          $('.modal-box').addClass("show-modal");
+          $('.start-btn').removeClass("show-modal");
+          heading.style.display = 'block'
+        } 
+        if(data == "Oui,bien sure"){
+          dhow(BOT_NAME, BOT_IMG, "left", msgText);
+        }
+        if(data == "voici les localisations des restaurant"){
+          localisation(BOT_NAME, BOT_IMG, "left", msgText);
+        }
+        if(data == "voila les photos"){
+          photo(BOT_NAME, BOT_IMG, "left", msgText);
+
+        }
+        if(data == "daccord"){
+          ano(BOT_NAME, BOT_IMG, "left", msgText);
+         
+        }
+        if(data == "bonjour. admin dhow"){
+          admindhow(BOT_NAME, BOT_IMG, "left", msgText);
+
+        }
+        if(data == "bonjour. admin panda"){
+          adminpanda(BOT_NAME, BOT_IMG, "left", msgText);
+
+        }
+        if(data == "bonjour. admin il288"){
+          adminil288(BOT_NAME, BOT_IMG, "left", msgText);
+
+        }
+        if(data == "vous pouvez consulter votre reservation via ce lien"){
+          forget(BOT_NAME, BOT_IMG, "left", msgText)
+        }
+        if(data == "tu peux modifier via ce lien"){
+          modifee(BOT_NAME, BOT_IMG, "left", msgText)
+        }
+        if(data == "menuuu"){
+          menuu(BOT_NAME, BOT_IMG, "left", msgText)
+        }
+      
+        
+
+      });
+
+    }
+
+
+    // Utils
+    function get(selector, root = document) {
+        console.log(root.querySelector(selector));
+      return root.querySelector(selector);
+      
+    }
+
+    
+
+    function formatDate(date) {
+      const h = "0" + date.getHours();
+      const m = "0" + date.getMinutes();
+
+      return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+
+    $(document).ready(function() {
+      const heading = $('.modal-box');
+      const startBtn = $('.start-btn');
+      const modalBox = $('.modal-box');
+    
+      // Show the modal on page load
+      $('.start').click(function(){
+        heading.css('display', 'block');
+        modalBox.addClass('show-modal');
+        startBtn.removeClass('show-modal');
+
+      });
+    
+      // Active cancel button
+      $('.fa-times').click(function() {
+        modalBox.removeClass('show-modal');
+        startBtn.addClass('show-modal');
+        heading.css('display', 'none');
+      });
+    
+   
+    
+    });
+
+    
+
+
+
+    
+  </script>
+  
+  
+<div class="center modal-box show-modal">
+
+<div class="fas fa-times"></div>
+<div class="form_container">
+  <form id="myForm" method="POST" action="{{ url_for('handle_form_submission') }}">
+    <div class="form_item">
+      <label>Selectionner le nom de restaurant</label>
+        <select name="restaurant">
+          <option>DHOW</option>
+          <option>IL288</option>
+          <option>PANDA</option>
+        </select>
+    </div>
+    <div class="form_wrap form_grp">
+      <div class="form_item">
+        <label>Nom</label>
+        <input type="text" name="name">
+      </div>
+      <div class="form_item">
+        <label>Prenom</label>
+        <input type="text" name="prenom">
+      </div>
+    </div>
+    <div class="form_wrap form_grp">
+      <div class="form_item">
+        <label>Numéro de téléphone</label>
+        <input id="phone" type="text" name="num" onchange="testPhoneNumber()">
+      </div>
+    </div>
+    <div class="form_wrap form_grp">
+      <div class="form_item">
+        <label>La Date De Reservation</label>
+        <input type="date" name="date" id="date" onchange="testDate()" > 
+      </div>
+      <div class="form_item">
+        <label>L'Heure De Reservation</label>
+        <input type="time" name="time">
+      </div>
+    </div>
+    <div class="form_wrap">
+      <div class="form_item">
+        <label>nombre de personnes</label>
+        <select name="nombre">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form_wrap">
+      <div class="form_item">
+        <label>Type de table</label>
+        <select name="class">
+          <option>l'interieur</option>
+          <option>l'exterieur</option>
+          <option>VIP</option>
+          <option>Anniversaire</option>
+          <option>Surprise</option>
+          <option>meeting</option>
+        </select>
+      </div>
+    </div>
+
+<center>
+    <div class="btn">
+      <input type="submit" value="Reserver" >
+      <a class="axx" id="quitter-btn" >quitter</a>
+    </div>
+    <script>
+      $('#quitter-btn').click(function () {
+        $('.modal-box').removeClass('show-modal');
+      });
+    </script>
+  </form>
+</center>
+
+
+
+  <script>
+
+
+    function testPhoneNumber() {
+      var phoneNumberInput = document.getElementById("phone");
+      if (phoneNumberInput && phoneNumberInput.value && phoneNumberInput.value.length === 10 ) {
+        if(phoneNumberInput.value.startsWith("06") || phoneNumberInput.value.startsWith("07") || phoneNumberInput.value.startsWith("05")) {
+          console.log("Phone number is valid.");
+        } else {
+          alert("Veuillez insérer une Phone valide.");
+          phoneNumberInput.value = "";
+        }
+      } else {
+        alert("Veuillez insérer une Phone valide.");
+        phoneNumberInput.value = "";
+      }
+    }
+
+
+    function testEmail() {
+      var emailInput = document.getElementById("email");
+      var email = emailInput.value;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+      } else {
+        alert("Veuillez insérer une Email valide.");
+        emailInput.value = "";
+      }
+    }
+    
+
+    function testDate() {
+      var inputDate = new Date(document.getElementById('date').value);
+      var currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+      if (inputDate < currentDate) {
+        alert('Veuillez insérer une date valide.');
+        document.getElementById('date').value = '';
+      }
+    }
+    
+
+    
+
+    $(document).ready(function() {
+      $('#myForm').submit(function(event) {
+        event.preventDefault();
+        $.post('/handle_form_submission', $(this).serialize(), function(response) {
+          showId(response);
+        });
+      });
+    });
+    
+    function showId(response) {
+      const heading = $('.modal-box');
+      const startBtn = $('.start-btn');
+      const modalBox = $('.modal-box');
+      var id = response[1];
+      console.log(id);
+      if (id != 0) {
+        console.log("yess");
+        if (id === -1) {
+          console.log("ooo");
+          alert("Les réservations dans cet horaire sont pleines!! Veuillez réserver pour un autre horaire");
+        } else {
+          if (alert("Votre réservation a été effectuée avec succès. <br> <br> Votre ID : " + id )) {
+            modalBox.removeClass('show-modal');
+            startBtn.addClass('show-modal');
+            heading.css('display', 'none');
+          }
+        }
+      } else {
+        alert("Il y a un problème. Merci de réessayer ultérieurement.");
+      }
+    }
+    
+    
+
+   
+
+
+
+  </script>
+  <script>
+    // Récupérer les éléments HTML nécessaires
+var chatHeader = document.getElementById("chat-header");
+var chatConversation = document.getElementById("chat-conversation");
+
+// Ajouter une fonction de clic à la barre du chatbox
+chatHeader.addEventListener("click", function() {
+  if (chatConversation.style.display === "none") {
+    // Afficher la conversation
+    chatConversation.style.display = "block";
+  } else {
+    // Masquer la conversation
+    chatConversation.style.display = "none";
+  }
+});
+
+  </script>
+
+
+</body>
+
+</html>

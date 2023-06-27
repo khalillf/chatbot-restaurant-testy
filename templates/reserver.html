@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sliding Modal Box Style</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <!--Jquery CDN link -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- CSS file -->
+    <!-- JavaScript file-->
+    <script src="function.js"></script>
+    <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/style2.css">
+  
+      <script>
+        $(document).ready(function() {
+          // show the modal on page load
+          $('.modal-box').addClass("show-modal");
+          $('.start-btn').removeClass("show-modal");
+      
+          // active cancel button
+          $('.fa-times').click(function() {
+            $('.modal-box').toggleClass("show-modal");
+            $('.start-btn').toggleClass("show-modal");
+          });
+        });
+      </script>
+      
+      <!-- Home page popup button -->
+
+      <style>
+        .axx {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #ca2525;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 4px;
+          font-weight: bold;
+          position: fixed;
+          bottom: 100px;
+          right: 680px;
+        }
+      </style>
+    <!-- Home page popup button -->
+<div class="start-btn">
+    <a></a>
+  </div>
+
+
+  <a href="/" class="axx">Aller à la page</a>
+  
+  <!-- Registration form -->
+  <div class="center modal-box show-modal">
+
+    <div class="fas fa-times"></div>
+    <div class="form_container">
+      <form id="myForm" method="POST" action="{{ url_for('modify') }}">
+        <div class="form_item">
+          <label>Selectionner le nom de restaurant</label>
+            <select name="restaurant">
+              <option>DHOW</option>
+              <option>IL288</option>
+              <option>PANDA</option>
+            </select>
+        </div>
+        <div class="form_wrap form_grp">
+          <div class="form_item">
+            <label>Nom</label>
+            <input type="text" name="name">
+          </div>
+          <div class="form_item">
+            <label>Prenom</label>
+            <input type="text" name="prenom">
+          </div>
+        </div>
+        <div class="form_wrap form_grp">
+          <div class="form_item">
+            <label>Numéro de téléphone</label>
+            <input id="phone" type="text" name="num" onchange="testPhoneNumber()">
+          </div>
+        </div>
+        <div class="form_wrap form_grp">
+          <div class="form_item">
+            <label>La Date De Reservation</label>
+            <input type="date" name="date" id="date" onchange="testDate()" > 
+          </div>
+          <div class="form_item">
+            <label>L'Heure De Reservation</label>
+            <input type="time" name="time">
+          </div>
+        </div>
+        <div class="form_wrap">
+          <div class="form_item">
+            <label>nombre de personnes</label>
+            <select name="nombre">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+            </select>
+          </div>
+        </div>
+    
+    
+        <div class="form_wrap">
+          <div class="form_item">
+            <label>Type de table</label>
+            <select name="class">
+              <option>l'interieur</option>
+              <option>l'exterieur</option>
+              <option>VIP</option>
+              <option>Anniversaire</option>
+              <option>Surprise</option>
+              <option>meeting</option>
+            </select>
+          </div>
+        </div>
+    
+    
+        <div class="btn">
+          <input type="submit" value="Enregistrer" >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Function to handle the button click event
+  function handleClick(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    var form = document.getElementById("myForm");
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData
+    })
+      .then(response => response.text())
+      .then(data => {
+        alert(data); // Display the response message in an alert
+        window.location.href = "/index.html"; // Redirect to index.html
+      })
+      .catch(error => {
+        console.error("An error occurred:", error);
+        alert("An error occurred while processing your request.");
+      });
+  }
+
+  // Add a click event listener to the button
+  var button = document.querySelector("input[type='submit']");
+  button.addEventListener("click", handleClick);
+
+
+
+
+  
+  function testPhoneNumber() {
+    var phoneNumberInput = document.getElementById("phone");
+    if (phoneNumberInput && phoneNumberInput.value && phoneNumberInput.value.length === 10 ) {
+      if(phoneNumberInput.value.startsWith("06") || phoneNumberInput.value.startsWith("07") || phoneNumberInput.value.startsWith("05")) {
+        console.log("Phone number is valid.");
+      } else {
+        alert("Veuillez insérer une Phone valide.");
+        phoneNumberInput.value = "";
+      }
+    } else {
+      alert("Veuillez insérer une Phone valide.");
+      phoneNumberInput.value = "";
+    }
+  }
+  
+
+  function testDate() {
+    var inputDate = new Date(document.getElementById('date').value);
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    if (inputDate < currentDate) {
+      alert('Veuillez insérer une date valide.');
+      document.getElementById('date').value = '';
+    }
+  }
+  
+
+</script>
+
+        
+
+      
+        
+</html>

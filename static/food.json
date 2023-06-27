@@ -1,0 +1,22 @@
+{
+  "foodItems": [
+    { "name": "salamon sashimi", "price": 60 },
+    { "name": "Pizza", "price": 60 },
+    { "name": "Burger", "price": 35 },
+    { "name": "Salad", "price": 20 },
+    { "name": "Salamon sashimi 4 pcs", "price": 60 },
+    { "name": "sashimi thon rouge 4 pcs", "price": 60 },
+    { "name": "Salamon carpaccio 8 pcs", "price": 80 },
+    { "name": "sashimi mix 12 pcs", "price": 60 },
+    { "name": "salmon nigiri", "price": 30 },
+    { "name": "shrimp nigiri", "price": 30 },
+    { "name": "thuna nigiri", "price": 40 },
+    { "name": "nigiri anguille", "price": 40 },
+    { "name": "shrimp tacos", "price": 65 },
+    { "name": "thon rouge tacos", "price": 65 },
+    { "name": "salmon tacos", "price": 65 },
+    { "name": "tacos crabe", "price": 75 },
+    { "name": "maki avocat", "price": 30 },
+    { "name": "maki saumon", "price": 30 }
+  ]
+}
